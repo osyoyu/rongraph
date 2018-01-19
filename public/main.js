@@ -23,81 +23,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log(chartData);
 
-    const chart = new Highcharts.chart({
-      chart: {
-        renderTo: 'chart',
-        type: 'areaspline',
-        // animation: {
-        //   duration: 250
-        // },
-        marginRight: 10,
-      },
-      plotOptions: {
-        areaspline: {
-          fillColor: {
-            linearGradient: {
-              x1: 0,
-              y1: 0,
-              x2: 0,
-              y2: 1
-            },
-            stops: [
-              [0, Highcharts.getOptions().colors[5]],
-              [1, Highcharts.Color(Highcharts.getOptions().colors[5]).setOpacity(0).get('rgba')]
-            ]
-          },
-          marker: {
-            radius: 2,
-            fillColor: "#000000"
-          },
-          lineWidth: 3,
-          lineColor: Highcharts.getOptions().colors[5],
-          states: {
-            hover: {
-              lineWidth: 1
-            }
-          },
-          threshold: null
-        }
-      },
+    Highcharts.chart('chart', {
       title: {
-        text: ''
+        text: '卒論の文字数',
       },
+
       xAxis: {
         type: 'datetime',
-        // tickPixelInterval: 150
       },
+
       yAxis: {
-        min: 0,
-        minRange: 20,
-        minTickInterval: 5,
         title: {
           text: null
         },
-        plotLines: [{
-          value: 0,
-          width: 2,
-          color: "#000000"
-        }],
-        labels: {
-          style: {
-            fontSize: '30px'
-          }
-        }
+        min: 0,
       },
-      tooltip: {
-        formatter: function () {
-          return '<b>' + this.series.name + '</b><br/>' +
-            Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-            Highcharts.numberFormat(this.y, 2);
-        }
-      },
+
       legend: {
-        enabled: false
+        align: 'left',
+        verticalAlign: 'top',
+        borderWidth: 0
       },
+
+
+      // plotOptions: {
+      //   areaspline: {
+      //     fillColor: {
+      //       linearGradient: {
+      //         x1: 0,
+      //         y1: 0,
+      //         x2: 0,
+      //         y2: 1
+      //       },
+      //       stops: [
+      //         [0, Highcharts.getOptions().colors[5]],
+      //         [1, Highcharts.Color(Highcharts.getOptions().colors[5]).setOpacity(0).get('rgba')]
+      //       ]
+      //     },
+      //     marker: {
+      //       radius: 2,
+      //       fillColor: "#000000"
+      //     },
+      //     lineWidth: 3,
+      //     lineColor: Highcharts.getOptions().colors[5],
+      //     states: {
+      //       hover: {
+      //         lineWidth: 1
+      //       }
+      //     },
+      //     threshold: null
+      //   }
+      // },
+      // tooltip: {
+      //   formatter: function () {
+      //     return '<b>' + this.series.name + '</b><br/>' +
+      //       Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+      //       Highcharts.numberFormat(this.y, 2);
+      //   }
+      // },
+      //
       exporting: {
         enabled: false
       },
+
       series: [{
         name: '文字数',
         data: chartData,
